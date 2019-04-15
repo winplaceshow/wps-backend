@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "WPS-backend",
   "main": "index.js",
+  "scripts": {
+    "server": "nodemon index.js"
+  },
   "repository": "https://github.com/winplaceshow/wps-backend.git",
   "author": "ills5771 <ilyayelizarov1@gmail.com>",
   "license": "MIT",
