@@ -18,7 +18,7 @@ server.get("/races", async (req, res) => {
 
 server.post("/races", async (req, res) => {
   try {
-    const race = await Races.insert(req.body);
+    const race = await Races.addRace(req.body);
     res.status(201).json(race);
   } catch (error) {
     console.log(error);
