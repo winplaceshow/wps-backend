@@ -16,4 +16,16 @@ server.get("/races", async (req, res) => {
   }
 });
 
+server.post("/races", async (req, res) => {
+  try {
+    const race = await Races.insert(req.body);
+    res.status(201).json(race);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "We encountered an error adding the race"
+    });
+  }
+});
+
 module.exports = server;
