@@ -11,10 +11,10 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-// server.use("/auth", authRouter);
+server.use("/auth", authRouter);
 
 server.get("/", async (req, res) => {
-  res.status(200).send("Win Place Show  and running!");
+  res.status(200).send("Win Place Show is up and running!");
 });
 
 server.get("/races", async (req, res) => {
