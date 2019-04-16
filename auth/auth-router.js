@@ -3,27 +3,40 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const secret = require("../api/secrets.js").jwtSecret;
-const Races = require("../data/racesModel.js");
+const Users = require("../races/racesModel.js");
 
 router.post("/signup", (req, res) => {
-  let race = req.body;
+  let user = req.body;
 
-  const hash = bcrypt.hashSync(race.password, 4);
+  const hash = bcrypt.hashSync(user.password, 4);
   user.password = hash;
-
-  Races.addUser(user)
+  if (!user.username) {
+    res.status(404).json({ error: "Please provide username to signup" });
+  }
+  if (!user.password) {
+    res.status(404).json({ error: "Please provide password to signup" });
+  }
+  if (!user.email) {
+    res.status(404).json({ error: "Please provide email to signup" });
+  }
+  Users.addUser(user)
     .then(saved => {
       res.status(201).json(saved);
     })
     .catch(error => {
-      res.status(500).json(error);
+      res.status(500).json({ error: "We encountered an error during signup" });
     });
 });
-
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
-  Races.getBy({ username })
+  if (!username) {
+    res.status(404).json({ error: "Please provide username to login" });
+  }
+  if (!password) {
+    res.status(404).json({ error: "Please provide password to login" });
+  }
+  Users.getBy({ username })
     .first()
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
@@ -42,7 +55,6 @@ router.post("/login", (req, res) => {
 });
 function generateToken(user) {
   const payload = {
-    subject: user.id,
     username: user.username
   };
   const options = {
