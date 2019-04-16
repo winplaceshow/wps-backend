@@ -5,7 +5,8 @@ module.exports = {
   addRace,
   addUser,
   getBy,
-  getById
+  getById,
+  getUsers
 };
 
 function getAll() {
@@ -27,6 +28,9 @@ async function addUser(user) {
   return getById(id);
 }
 
+function getUsers() {
+  return db("users");
+}
 function getById(id) {
   return db("users")
     .where({ id })

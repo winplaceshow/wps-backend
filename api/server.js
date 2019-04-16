@@ -27,8 +27,12 @@ server.get("/races", async (req, res) => {
     res.status(500).json({ message: "Error retrieving races" });
   }
 });
-server.get("/test", async (req, res) => {
-  res.status(200).send("testing endpoint");
+server.get("/users", (req, res) => {
+  Races.getUsers()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => res.send(err));
 });
 
 server.post("/races", async (req, res) => {
@@ -78,7 +82,6 @@ server.post("/login", (req, res) => {
 });
 function generateToken(user) {
   const payload = {
-    subject: user.id,
     username: user.username
   };
   const options = {
