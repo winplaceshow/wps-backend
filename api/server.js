@@ -1,7 +1,11 @@
 const express = require("express");
 const Races = require("../data/racesModel");
 const server = express();
+
+const cors = require("cors");
+
 server.use(express.json());
+server.use(cors());
 
 server.get("/", async (req, res) => {
   res.status(200).send("Win Place Show Api is up and running!");

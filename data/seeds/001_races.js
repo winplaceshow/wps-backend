@@ -4,75 +4,75 @@ exports.seed = function(knex, Promise) {
     .then(function() {
       return knex("races").insert([
         {
-          date: "2011 / 01 / 01",
+          date: "01/01/2011",
           track: "Aqueduct Racetrack",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
 
-          city: "Queens, NY"
+          city: "Queens"
         },
         {
           date: "2011 / 01 / 02",
           track: "Arlington International Racecourse",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Arlington Heights, IL"
+          city: "Arlington Heights"
         },
         {
           date: "2011 / 01 / 03",
           track: "Atlantic City Race Course",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Hamilton Township, NJ"
+          city: "Hamilton Township"
         },
         {
           date: "2012 / 01 / 04",
           track: "Fairplex",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Pomona, CA"
+          city: "Pomona"
         },
         {
           date: "2012 / 01 / 05",
           track: "Belmont Park",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Elmont, NY"
+          city: "Elmont"
         },
         {
           date: "2012 / 01 / 06",
           track: "Belterra Park Cincinnati",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Cincinnati, OH"
+          city: "Cincinnati"
         },
         {
           date: " 2012 / 01 / 07",
           track: "Hollywood Park",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Inglewood, CA"
+          city: "Inglewood"
         },
         {
           date: "2013 / 01 / 08",
           track: "Calder Casino",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Miami Gardens, FL"
+          city: "Miami Gardens"
         },
         {
           date: "2013 / 01 / 09",
           track: "Canterbury Park",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Shakopee, MN"
+          city: "Shakopee"
         },
         {
           date: "2013 / 01 / 10",
           track: "Churchill Downs",
           horses:
             "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
-          city: "Louisville, KY"
+          city: "Louisville"
         }
       ]);
     });
