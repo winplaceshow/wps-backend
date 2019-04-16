@@ -41,9 +41,9 @@ server.post("/races", async (req, res) => {
   }
 });
 server.post("/signup", (req, res) => {
-  let race = req.body;
+  let user = req.body;
 
-  const hash = bcrypt.hashSync(race.password, 4);
+  const hash = bcrypt.hashSync(user.password, 4);
   user.password = hash;
 
   Races.addUser(user)
