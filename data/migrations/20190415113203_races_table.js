@@ -6,6 +6,7 @@ exports.up = function(knex) {
     tbl.string("city", 128);
     tbl.string("horses");
   });
+
   // .createTable("results", function(results) {
   //   results.increments("id");
 
