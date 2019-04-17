@@ -23,6 +23,25 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const race = await Races.getById(req.params.id);
+
+    if (race) {
+      res.status(200).json(race);
+    } else {
+      res
+        .status(404)
+        .json({ message: "The race with that ID does not exist." });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Race information could not be retrieved."
+    });
+  }
+});
+
 router.get("/:id/horses", async (req, res) => {
   const { id } = req.params;
   try {
