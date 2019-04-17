@@ -6,7 +6,8 @@ exports.seed = function(knex, Promise) {
         {
           date: "01/01/2011",
           track: "Aqueduct Racetrack",
-
+          horses:
+            "Storm Cat, A.P. Indy,Mr. Prospector, Unbridled's Song, Gone West, Kingmambo, Giant's Causeway, Danzig, Seeking the Gold",
           city: "Queens"
         },
         {
