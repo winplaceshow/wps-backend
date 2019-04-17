@@ -1,11 +1,11 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const restricted = require("../auth/restricted.js");
+
 const usersRouter = require("../users/usersRouter");
 const racesRouter = require("../races/racesRouter");
 const authRouter = require("../auth/auth-router");
-
+const restricted = require("../auth/restricted.js");
 const server = express();
 
 server.use(helmet());
