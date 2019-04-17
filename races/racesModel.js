@@ -36,6 +36,3 @@ function getById(id) {
     .where({ id })
     .first();
 }
-function getHorse() {
-  return db("horses");
-}

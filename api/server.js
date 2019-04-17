@@ -12,7 +12,7 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use("/", authRouter);
+server.use("/auth", authRouter);
 server.use("/users", usersRouter);
 server.use("/races", racesRouter);
 
