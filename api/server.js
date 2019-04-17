@@ -14,7 +14,7 @@ server.use(cors());
 
 server.use("/", authRouter);
 server.use("/users", usersRouter);
-server.use("/races", restricted, racesRouter);
+server.use("/races", racesRouter);
 
 server.get("/", async (req, res) => {
   res.status(200).send("Win Place Show is up and running!");
