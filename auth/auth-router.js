@@ -10,7 +10,7 @@ router.post("/signup", (req, res) => {
 
   const hash = bcrypt.hashSync(user.password, 4);
   user.password = hash;
-  if (!user.username || !user.password || !user.email) {
+  if (!user.username) {
     res.status(404).json({ error: "Please provide your credentials" });
   } else {
     Users.addUser(user)
