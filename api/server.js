@@ -12,9 +12,9 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use("/auth", authRouter);
-server.use("/users", restricted, usersRouter);
-server.use("/races", racesRouter);
+server.use("/", authRouter);
+server.use("/users", usersRouter);
+server.use("/races", restricted, racesRouter);
 
 server.get("/", async (req, res) => {
   res.status(200).send("Win Place Show is up and running!");

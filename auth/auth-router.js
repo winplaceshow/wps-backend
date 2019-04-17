@@ -10,48 +10,43 @@ router.post("/signup", (req, res) => {
 
   const hash = bcrypt.hashSync(user.password, 4);
   user.password = hash;
-  if (!user.username) {
-    res.status(404).json({ error: "Please provide username to signup" });
+  if (!user.username || !user.password || !user.email) {
+    res.status(404).json({ error: "Please provide your credentials" });
+  } else {
+    Users.addUser(user)
+      .then(saved => {
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res
+          .status(500)
+          .json({ error: "We encountered an error during signup" }); //send token
+      });
   }
-  if (!user.password) {
-    res.status(404).json({ error: "Please provide password to signup" });
-  }
-  if (!user.email) {
-    res.status(404).json({ error: "Please provide email to signup" });
-  }
-  Users.addUser(user)
-    .then(saved => {
-      res.status(201).json(saved);
-    })
-    .catch(error => {
-      res.status(500).json({ error: "We encountered an error during signup" });
-    });
 });
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
 
-  if (!username) {
-    res.status(404).json({ error: "Please provide username to login" });
-  }
-  if (!password) {
-    res.status(404).json({ error: "Please provide password to login" });
-  }
-  Users.getBy({ username })
-    .first()
-    .then(user => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = generateToken(user);
+  if (!username || !password) {
+    res.status(404).json({ error: "Please provide your login credentials" });
+  } else {
+    Users.getBy({ username })
+      .first()
+      .then(user => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = generateToken(user);
 
-        res
-          .status(200)
-          .json({ message: `Welcome back ${user.username}!`, token });
-      } else {
-        res.status(401).json({ message: "Invalid Credentials" });
-      }
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
+          res
+            .status(200)
+            .json({ message: `Welcome back ${user.username}!`, token });
+        } else {
+          res.status(401).json({ message: "Invalid Credentials" });
+        }
+      })
+      .catch(error => {
+        res.status(500).json(error);
+      });
+  }
 });
 function generateToken(user) {
   const payload = {
