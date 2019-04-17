@@ -6,11 +6,17 @@ module.exports = {
   addUser,
   getBy,
   getById,
-  getUsers
+  getUsers,
+  raceById
 };
 
 function getAll() {
   return db("races");
+}
+function raceById(id) {
+  return db("races")
+    .where({ id })
+    .first();
 }
 
 function getBy(username) {

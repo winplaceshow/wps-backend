@@ -25,7 +25,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const race = await Races.getById(req.params.id);
+    const race = await Races.raceById(req.params.id);
 
     if (race) {
       res.status(200).json(race);
