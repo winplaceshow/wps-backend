@@ -4,7 +4,9 @@ module.exports = {
   getBy,
   addUser,
   getUsers,
-  getById
+  getById,
+  remove,
+  update
 };
 
 function getBy(username) {
@@ -24,4 +26,16 @@ function getById(id) {
   return db("users")
     .where({ id })
     .first();
+}
+
+function update(id, changes) {
+  return db("users")
+    .where({ id })
+    .update(changes);
+}
+
+function remove(id) {
+  return db("users")
+    .where("id", id)
+    .del();
 }
