@@ -1,5 +1,5 @@
 const router = require("express").Router();
-
+const db = require("../data/dbConfig.js");
 const Races = require("./racesModel");
 
 router.get("/", async (req, res) => {
@@ -19,6 +19,21 @@ router.post("/", async (req, res) => {
     console.log(error);
     res.status(500).json({
       message: "We encountered an error adding the race"
+    });
+  }
+});
+
+router.get("/:id/horses", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const horses = await db("horses as h").where({ "h.race_id": id });
+    const races = await db("races as r")
+      .where({ "r.id": id })
+      .first();
+    res.status(200).json({ ...races, horses });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error retrieving horses for this race"
     });
   }
 });
