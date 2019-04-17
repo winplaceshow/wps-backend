@@ -18,6 +18,7 @@ router.post("/signup", (req, res) => {
       res.status(201).json(saved);
     })
     .catch(error => {
+      console.error(error);
       res.status(500).json({ error: "We encountered an error during signup" }); //send token
     });
   // }
