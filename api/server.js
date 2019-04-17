@@ -17,7 +17,7 @@ server.use("/users", usersRouter);
 server.use("/races", racesRouter);
 
 server.get("/", async (req, res) => {
-  res.status(200).send("Win Place Show is up and running!");
+  res.status(200).send("Place Show is up and running!");
 });
 
 module.exports = server;
