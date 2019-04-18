@@ -3,10 +3,10 @@ const server = require("../api/server.js");
 const db = require("../data/dbConfig");
 
 describe("auth", () => {
-  describe("Auth requests", () => {
-    beforeEach(async () => {
-      await db("users").truncate();
-    });
+  beforeEach(async () => {
+    await db("users").truncate();
+  });
+  describe("Signup POST request", () => {
     // it("returns 201 status on successful signup", async () => {
     //   const expected = {
     //     username: "Ilya",
@@ -51,10 +51,36 @@ describe("auth", () => {
 
       expect(res.status).toEqual(404);
     });
-    it("returns 404 if username, password AND email are omitted from signup", async () => {
+    it("returns 404 if username, password, AND email are omitted from signup", async () => {
       const expected = {};
       const res = await request(server)
         .post("/signup")
+        .send(expected);
+
+      expect(res.status).toEqual(404);
+    });
+  });
+  describe("Login POST request", () => {
+    it("returns 404 if username is omitted from login", async () => {
+      const expected = { password: "Yelizarov" };
+      const res = await request(server)
+        .post("/login")
+        .send(expected);
+
+      expect(res.status).toEqual(404);
+    });
+    it("returns 404 if password is omitted from login", async () => {
+      const expected = { username: "Ilya" };
+      const res = await request(server)
+        .post("/login")
+        .send(expected);
+
+      expect(res.status).toEqual(404);
+    });
+    it("returns 404 if username AND password are omitted from login", async () => {
+      const expected = {};
+      const res = await request(server)
+        .post("/login")
         .send(expected);
 
       expect(res.status).toEqual(404);
