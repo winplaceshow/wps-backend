@@ -27,17 +27,17 @@ describe("races", () => {
     });
   });
 });
-describe("test route", () => {
-  beforeEach(async () => {
-    await db("races").truncate();
-  });
-  it("should add race, given the correct info", async () => {
-    await Races.addRace({ date: "02/02/2002", track: "hp" });
+// describe("test route", () => {
+//   beforeEach(async () => {
+//     await db("races").truncate();
+//   });
+//   it("should add race, given the correct info", async () => {
+//     await Races.addRace({ date: "02/02/2002", track: "hp" });
 
-    const races = await db("races");
-    expect(races).toHaveLength(13);
-  });
-});
+//     const races = await db("races");
+//     expect(races).toHaveLength(13);
+//   });
+// });
 
 // it("returns 201 status code", async () => {
 //   const expected = {
