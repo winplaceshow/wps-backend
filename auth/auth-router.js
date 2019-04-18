@@ -10,18 +10,20 @@ router.post("/signup", (req, res) => {
 
   const hash = bcrypt.hashSync(user.password, 4);
   user.password = hash;
-  // if (!user.username || !user.password || !user.email) {
-  //   res.status(404).json({ error: "Please provide your credentials" });
-  // } else {
-  Users.addUser(user)
-    .then(saved => {
-      res.status(201).json(saved);
-    })
-    .catch(error => {
-      console.error(error);
-      res.status(500).json({ error: "We encountered an error during signup" }); //send token
-    });
-  // }
+  if (!user.username || !user.password || !user.email) {
+    res.status(404).json({ error: "Please provide your credentials" });
+  } else {
+    Users.addUser(user)
+      .then(saved => {
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        console.error(error);
+        res
+          .status(500)
+          .json({ error: "We encountered an error during signup" });
+      });
+  }
 });
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
@@ -35,9 +37,10 @@ router.post("/login", (req, res) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = generateToken(user);
 
-          res
-            .status(200)
-            .json({ message: `Welcome back ${user.username}!`, token });
+          res.status(200).json({
+            message: `Welcome back ${user.username}!`,
+            token
+          });
         } else {
           res.status(401).json({ message: "Invalid Credentials" });
         }
