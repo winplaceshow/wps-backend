@@ -1,32 +1,32 @@
-const request = require("supertest");
-const server = require("../api/server");
-const Races = require("./racesModel");
-const db = require("../data/dbConfig");
+// const request = require("supertest");
+// const server = require("../api/server");
+// const Races = require("./racesModel");
+// const db = require("../data/dbConfig");
 
-describe("races", () => {
-  describe("GET request", () => {
-    it("returns 200 status code ", () => {
-      return request(server)
-        .get("/races")
-        .then(response => {
-          expect(response.status).toEqual(200);
-        });
-    });
-    it("returns 200 status code for /:id ", () => {
-      return request(server)
-        .get("/races/:id")
-        .then(res => {
-          expect(res.status).toEqual(200);
-        });
-    });
-    it("returns an array", async () => {
-      const res = await request(server).get("/races");
-      if (res.body.length === 0) {
-        expect(res.body).toEqual([]);
-      }
-    });
-  });
-});
+// describe("races", () => {
+//   describe("GET request", () => {
+//     it("returns 200 status code ", () => {
+//       return request(server)
+//         .get("/races")
+//         .then(response => {
+//           expect(response.status).toEqual(200);
+//         });
+//     });
+//     it("returns 200 status code for /:id ", () => {
+//       return request(server)
+//         .get("/races/:id")
+//         .then(res => {
+//           expect(res.status).toEqual(200);
+//         });
+//     });
+//     it("returns an array", async () => {
+//       const res = await request(server).get("/races");
+//       if (res.body.length === 0) {
+//         expect(res.body).toEqual([]);
+//       }
+//     });
+//   });
+// });
 // describe("test route", () => {
 //   beforeEach(async () => {
 //     await db("races").truncate();

@@ -8,8 +8,8 @@ const Users = require("../users/usersModel");
 router.post("/signup", (req, res) => {
   let user = req.body;
 
-  const hash = bcrypt.hashSync(user.password, 4);
-  user.password = hash;
+  // const hash = bcrypt.hashSync(user.password, 4);
+  // user.password = hash;
   if (!user.username || !user.password || !user.email) {
     res.status(404).json({ error: "Please provide your credentials" });
   } else {
