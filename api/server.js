@@ -1,31 +1,23 @@
 const express = require("express");
-const Races = require("../data/racesModel");
+const helmet = require("helmet");
+const cors = require("cors");
+
+const usersRouter = require("../users/usersRouter");
+const racesRouter = require("../races/racesRouter");
+const authRouter = require("../auth/auth-router");
+const restricted = require("../auth/restricted.js");
 const server = express();
+
+server.use(helmet());
 server.use(express.json());
+server.use(cors());
+
+server.use("/auth", authRouter);
+server.use("/users", usersRouter);
+server.use("/races", racesRouter);
 
 server.get("/", async (req, res) => {
-  res.status(200).send("Win Place Show Api is up and running!");
-});
-
-server.get("/races", async (req, res) => {
-  try {
-    const races = await Races.getAll(req.query);
-    res.status(200).json(races);
-  } catch (error) {
-    res.status(500).json({ message: "Error retrieving races" });
-  }
-});
-
-server.post("/races", async (req, res) => {
-  try {
-    const race = await Races.addRace(req.body);
-    res.status(201).json(race);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({
-      message: "We encountered an error adding the race"
-    });
-  }
+  res.status(200).send("Place Show is up and running!");
 });
 
 module.exports = server;
