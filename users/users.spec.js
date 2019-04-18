@@ -1,10 +1,9 @@
 const request = require("supertest");
 const server = require("../api/server");
 const Users = require("./usersModel");
-const db = require("../data/dbConfig");
 
 describe("users", () => {
-  describe("GET /:id route", () => {
+  describe("GET requests", () => {
     it("returns status code 200", () => {
       return request(server)
         .get("/")
@@ -12,5 +11,13 @@ describe("users", () => {
           expect(res.status).toBe(200);
         });
     });
+    // it("returns status code 200 on delete", () => {
+    //   return request(server)
+    //     .delete("/:id")
+    //     .then(res => {
+    //       expect(res.status).toBe(200);
+    //     });
+    // });
   });
+  // describe()
 });

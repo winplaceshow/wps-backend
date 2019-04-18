@@ -1,10 +1,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable("races", tbl => {
     tbl.increments();
-    tbl.julianday("date").notNullable();
+    tbl.string("date").notNullable();
     tbl.string("track", 128);
     tbl.string("city", 128);
-    // tbl.string("horses");
+    tbl.string("horses");
   });
 };
 
