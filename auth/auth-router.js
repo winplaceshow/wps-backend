@@ -45,7 +45,7 @@ router.post("/login", (req, res) => {
 
         //   res.status(200).json({
         //     message: `Welcome back ${user.username}!`,
-        //     // token,
+        //     token,
         //     id: user.id
         //   });
         // } else {

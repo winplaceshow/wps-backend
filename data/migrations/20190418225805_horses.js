@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable("horses", function(tbl) {
     tbl.increments();
 
-    tbl.string("name");
+    tbl.string("name").notNullable();
 
     tbl.integer("winnings");
 
